@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CarDaoImpl extends EntityManagerImpl<Car> implements CarDao {
-    private CarDoorDao carDoorDao;
-    private CarWheelDao carWheelDao;
+    private final CarDoorDao carDoorDao;
+    private final CarWheelDao carWheelDao;
 
     public CarDaoImpl(CarDoorDao carDoorDao, CarWheelDao carWheelDao) {
         this.carDoorDao = carDoorDao;
@@ -20,14 +20,18 @@ public class CarDaoImpl extends EntityManagerImpl<Car> implements CarDao {
 
     @Override
     public Car add(Car car) {
-        for (CarWheel carWheel: car.getWheels()) {
-            if (carWheel.getId() == null) {
-                carWheelDao.add(carWheel);
+        if (car.getWheels() != null) {
+            for (CarWheel carWheel : car.getWheels()) {
+                if (carWheel.getId() == null) {
+                    carWheel = carWheelDao.add(carWheel);
+                }
             }
         }
-        for (CarDoor carDoor: car.getDoors()) {
-            if (carDoor.getId() == null) {
-                carDoorDao.add(carDoor);
+        if (car.getDoors() != null) {
+            for (CarDoor carDoor : car.getDoors()) {
+                if (carDoor.getId() == null) {
+                    carDoor = carDoorDao.add(carDoor);
+                }
             }
         }
         return super.add(car);
