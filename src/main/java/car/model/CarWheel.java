@@ -24,6 +24,14 @@ public class CarWheel {
         tireState -= (float) percent / 100;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public float getTireState() {
         return tireState;
     }

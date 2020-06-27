@@ -1,9 +1,8 @@
-import car.dao.impl.CarDaoImpl;
+import car.config.AppConfig;
 import car.exceptions.CarCanNotDoActionException;
 import car.model.Car;
 import car.model.CarWheel;
 import car.service.CarService;
-import car.service.impl.CarServiceImpl;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.Assert;
@@ -11,11 +10,12 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class CarTests {
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
-    private final CarService carService = new CarServiceImpl(new CarDaoImpl());
+    private static CarService carService;
     private static Car car;
     private static final LocalDateTime DATE_OF_CREATION = LocalDateTime.MIN;
     private static final Car.EngineType ENGINE_TYPE = Car.EngineType.V6;
@@ -25,6 +25,9 @@ public class CarTests {
 
     @BeforeClass
     public static void before() {
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(AppConfig.class);
+        carService = context.getBean(CarService.class);
         car = new Car(DATE_OF_CREATION, ENGINE_TYPE, MAX_SPEED, ACCELERATION, CAPACITY);
     }
 

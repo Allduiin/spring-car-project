@@ -46,6 +46,14 @@ public class CarDoor {
         windowState = (windowState == WindowState.CLOSED) ? WindowState.OPEN : WindowState.CLOSED;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public DoorState getDoorState() {
         return doorState;
     }
