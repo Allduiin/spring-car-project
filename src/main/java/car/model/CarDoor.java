@@ -23,7 +23,7 @@ public class CarDoor {
     }
 
     public void openDoor() {
-        doorState = DoorState.OPEN;
+        doorState = DoorState.OPENED;
     }
 
     public void closeDoor() {
@@ -31,11 +31,11 @@ public class CarDoor {
     }
 
     public void changeDoorState() {
-        doorState = (doorState == DoorState.CLOSED) ? DoorState.OPEN : DoorState.CLOSED;
+        doorState = (doorState == DoorState.CLOSED) ? DoorState.OPENED : DoorState.CLOSED;
     }
 
     public void openWindow() {
-        windowState = WindowState.OPEN;
+        windowState = WindowState.OPENED;
     }
 
     public void closeWindow() {
@@ -43,7 +43,15 @@ public class CarDoor {
     }
 
     public void changeWindowState() {
-        windowState = (windowState == WindowState.CLOSED) ? WindowState.OPEN : WindowState.CLOSED;
+        windowState = (windowState == WindowState.CLOSED) ? WindowState.OPENED : WindowState.CLOSED;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public DoorState getDoorState() {
@@ -63,11 +71,11 @@ public class CarDoor {
     }
 
     public enum DoorState {
-        CLOSED, OPEN
+        CLOSED, OPENED
     }
 
     public enum WindowState {
-        CLOSED, OPEN
+        CLOSED, OPENED
     }
 
     @Override
