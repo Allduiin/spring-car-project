@@ -1,7 +1,4 @@
 import car.config.AppConfig;
-import car.dao.CarDao;
-import car.dao.CarDoorDao;
-import car.dao.CarWheelDao;
 import car.model.Car;
 import car.model.CarDoor;
 import car.model.CarWheel;
